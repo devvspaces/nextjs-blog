@@ -5,9 +5,12 @@ import Date from "../../components/date";
 import utilStyles from '../../styles/utils.module.css';
 
 
-export default function Post({ postData }) {
+type Props = Awaited<ReturnType<typeof getStaticProps>>["props"];
+
+
+export default function Post({ postData }: Props) {
     return (
-      <Layout>
+      <Layout home>
         <Head>
           <title>{postData.title}</title>
         </Head>
