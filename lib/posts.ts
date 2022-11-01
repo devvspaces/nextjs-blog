@@ -17,7 +17,7 @@ export function getPostNames() {
     }));
 }
 
-function getPostMatter(fileId) {
+function getPostMatter(fileId): matterResultData {
     // Remove ".md" from file name to get id
     const fileName = `${fileId}.md`;
 
@@ -31,7 +31,23 @@ function getPostMatter(fileId) {
     return matterResult;
 }
 
-export async function getPostData(fileId) {
+
+interface Ret {
+    title: string;
+    date: string;
+    id: string;
+    content: string;
+}
+
+interface matterResultData extends matter.GrayMatterFile<string> {
+    data: {
+        [key: string]: any;
+        title?: string;
+        date?: string;
+    }
+}
+
+export async function getPostData(fileId: string) {
     // Use gray-matter to parse the post metadata section
     const matterResult = getPostMatter(fileId);
 
