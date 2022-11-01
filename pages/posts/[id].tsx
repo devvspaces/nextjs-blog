@@ -3,9 +3,10 @@ import { getPostNames, getPostData } from "../../lib/posts";
 import Head from "next/head";
 import Date from "../../components/date";
 import utilStyles from '../../styles/utils.module.css';
+import { InferGetStaticPropsType } from 'next';
 
 
-type Props = Awaited<ReturnType<typeof getStaticProps>>["props"];
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 
 export default function Post({ postData }: Props) {
